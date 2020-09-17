@@ -5,7 +5,7 @@ export type GameEssentials = {
 }
 
 const GameTypes: { [key: string]: GameEssentials } = {
-  EASY: { sizeX: 10, sizeY: 10, minesAmount: 10 },
+  EASY: { sizeX: 10, sizeY: 10, minesAmount: 20 },
   MEDIUM: { sizeX: 20, sizeY: 20, minesAmount: 30 },
 };
 

@@ -1,0 +1,13 @@
+.field {
+    width: 20px;
+    height: 20px;
+    border: 1px solid red;
+}
+
+.mine {
+    background-color: black;
+}
+
+.uncovered {
+    background-color: yellow;
+}

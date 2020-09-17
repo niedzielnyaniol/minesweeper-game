@@ -1,11 +1,13 @@
-import FieldState from '../types/FieldState';
+import FieldStates from '../types/FieldState';
+import FieldTypes from '../types/FieldTypes';
 
 class Field {
   constructor(
-        public x: number,
-        public y: number,
-        private borderingMines: number | null = null,
-        private state: FieldState = FieldState.HIDDEN,
+        private x: number,
+        private y: number,
+        private borderingMines: number = 0,
+        private state: FieldStates = FieldStates.HIDDEN,
+        private type: FieldTypes = FieldTypes.NORMAL,
   ) {}
 
   setOrigin(x: number, y:number): void {
@@ -13,28 +15,43 @@ class Field {
     this.y = y;
   }
 
-  getFieldData(): Field {
-    return { ...this };
+  getOrigins(): {x: number, y: number} {
+    return {
+      x: this.x,
+      y: this.y,
+    };
   }
 
   setBorderingMines(amount: number): void {
     this.borderingMines = amount;
   }
 
-  getBorderingMines(): number | null {
+  getBorderingMines(): number {
     return this.borderingMines;
   }
 
   uncoverField(): void {
-    this.state = FieldState.OPENED;
+    this.state = FieldStates.OPENED;
   }
 
-  getState(): FieldState {
+  getState(): FieldStates {
     return this.state;
   }
 
   flagField(): void {
-    this.state = FieldState.FLAGGED;
+    this.state = FieldStates.FLAGGED;
+  }
+
+  convertToMine(): void {
+    this.type = FieldTypes.MINE;
+  }
+
+  isMine(): boolean {
+    return this.type === FieldTypes.MINE;
+  }
+
+  isUncovered(): boolean {
+    return this.state === FieldStates.OPENED;
   }
 }
 

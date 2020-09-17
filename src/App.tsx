@@ -1,28 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import GameManager from './models/GameManager';
+import GameTypes from './types/GameType';
+import BoardComponent from './components/Board';
+import Field from './models/Field';
+
+const gameManager = new GameManager();
 
 function App(): JSX.Element {
+  const [fields, setFields] = useState<Field[][]>();
+
+  useEffect(() => {
+    gameManager.setUpdateViewCallback(setFields);
+    gameManager.startGame(GameTypes.EASY);
+  }, []);
+
+  const handleFieldClick = (x: number, y: number) => {
+    gameManager.handleFieldClick(x, y);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        fields ? (
+          <BoardComponent fields={fields} onFieldClick={handleFieldClick} />
+        ) : 'start new game...'
+      }
     </div>
   );
 }
