@@ -1,0 +1,22 @@
+.row {
+    display: flex;
+}
+
+.firstFrame {
+    border-top: 3px solid #7a7a7a;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    border-left: 3px solid #7a7a7a;
+}
+
+.secondFrame {
+    border: 6px solid #c0c0c0;
+}
+
+.thirdFrame {
+    display: inline-block;
+    border-right: 3px solid #808080;
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-bottom: 3px solid #808080;
+}

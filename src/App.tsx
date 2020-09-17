@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import GameManager from './models/GameManager';
 import GameTypes from './types/GameType';
 import BoardComponent from './components/Board';
@@ -20,7 +20,7 @@ function App(): JSX.Element {
   };
 
   return (
-    <div>
+    <div className={classes.center}>
       {
         fields ? (
           <BoardComponent fields={fields} onFieldClick={handleFieldClick} />

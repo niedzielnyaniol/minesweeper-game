@@ -1,16 +1,60 @@
 .field {
     width: 20px;
     height: 20px;
-    border: 1px solid red;
+    border-top: 3px solid #ffffff;
+    border-right: 3px solid #7b7b7b;
+    border-bottom: 3px solid #7b7b7b;
+    border-left: 3px solid #ffffff;
     background: #c0c0c0;
+    padding: 0;
+    font-weight: 800;
+    font-family: system-ui;
+    font-size: 16px;
+}
+
+.field:focus {
+    outline: none;
+    border: 1px solid #8c8c8c;
 }
 
 .mine {
     background: url('/mine.png');
-    background-color: white;
+    background-color: #c0c0c0;
     background-size: 100%;
 }
 
 .uncovered {
-    background-color: white;
+    border: 1px solid #8c8c8c;
+}
+
+.number1{
+    color: #00f;
+}
+
+.number2{
+    color: #007b00
+}
+
+.number3{
+    color: #ff0000
+}
+
+.number4{
+    color: #00007b
+}
+
+.number5{
+    color: #7b0000
+}
+
+.number6{
+    color: #007b7b
+}
+
+.number7{
+    color: #000000
+}
+
+.number8{
+    color: #7b7b7b
 }

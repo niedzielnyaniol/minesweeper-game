@@ -25,10 +25,11 @@ const Field = ({
           classes.field,
           isUncovered && classes.uncovered,
           isUncovered && isMine && classes.mine,
+          borderingMinesAmount > 0 && classes[`number${borderingMinesAmount}`],
         ])
       }
     >
-      {isUncovered && borderingMinesAmount > 0 ? borderingMinesAmount : null}
+      {isUncovered && !isMine && borderingMinesAmount > 0 ? borderingMinesAmount : null}
     </button>
   );
 };
