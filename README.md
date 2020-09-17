@@ -14,4 +14,4 @@ yarn install
 yarn start
 ```
 
-have fun
+have fun!

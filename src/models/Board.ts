@@ -1,4 +1,5 @@
 import Field from './Field';
+import Origin from './Origin';
 
 class Board {
     private fields: Field[][];
@@ -23,29 +24,8 @@ class Board {
       return this.fields[y][x];
     }
 
-    setField(field: Field, origin?: { x: number, y: number}): void {
-      const { x, y } = origin || field.getOrigins();
-
-      this.fields[y][x] = field;
-    }
-
-    getSizes(): { x: number, y: number } {
-      return {
-        y: this.fields.length,
-        x: this.fields[0].length,
-      };
-    }
-
-    map(callback: (field: Field) => Field): void {
-      const { x, y } = this.getSizes();
-
-      for (let i = 0; i < y; i += 1) {
-        for (let j = 0; j < x; j += 1) {
-          const field = this.getField(x, y);
-
-          this.setField(callback(field));
-        }
-      }
+    getSizes(): Origin {
+      return new Origin(this.fields.length, this.fields[0].length);
     }
 }
 

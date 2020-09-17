@@ -13,7 +13,7 @@ const Board = ({
           <div key={`row-${index}`} style={{ display: 'flex' }}>
             {
                 row.map((field, fieldIndex) => {
-                  const { x, y } = field.getOrigins();
+                  const { x, y } = field.getOrigin();
                   const isUncovered = field.isUncovered();
                   const isMine = field.isMine();
                   const borderingMinesAmount = field.getBorderingMines();

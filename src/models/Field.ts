@@ -1,5 +1,6 @@
 import FieldStates from '../types/FieldState';
 import FieldTypes from '../types/FieldTypes';
+import Origin from './Origin';
 
 class Field {
   constructor(
@@ -10,16 +11,8 @@ class Field {
       private type: FieldTypes = FieldTypes.NORMAL,
   ) {}
 
-  setOrigin(x: number, y:number): void {
-    this.x = x;
-    this.y = y;
-  }
-
-  getOrigins(): {x: number, y: number} {
-    return {
-      x: this.x,
-      y: this.y,
-    };
+  getOrigin(): Origin {
+    return new Origin(this.x, this.y);
   }
 
   setBorderingMines(amount: number): void {
