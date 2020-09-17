@@ -4,15 +4,14 @@ import classes from './Field.module.css';
 import classNames from '../../utils/classNames';
 
 const Field = ({
-  field,
+  borderingMinesAmount,
+  isMine,
+  isUncovered,
+  x,
+  y,
   onClick,
 }: Props): JSX.Element => {
-  const borderingMines = field.getBorderingMines();
-  const { x, y } = field.getOrigins();
-
   const handleClick = (): void => {
-    const { x, y } = field.getOrigins();
-
     onClick(x, y);
   };
 
@@ -21,17 +20,15 @@ const Field = ({
     <button
       type="button"
       onClick={handleClick}
-      data-x={x}
-      data-y={y}
       className={
         classNames([
           classes.field,
-          field.isMine() && classes.mine,
-          field.isUncovered() && classes.uncovered,
+          isUncovered && classes.uncovered,
+          isUncovered && isMine && classes.mine,
         ])
       }
     >
-      {borderingMines && borderingMines > 0 ? borderingMines : null}
+      {isUncovered && borderingMinesAmount > 0 ? borderingMinesAmount : null}
     </button>
   );
 };

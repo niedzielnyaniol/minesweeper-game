@@ -5,30 +5,48 @@ import Randomizer from './Randomizer';
 
 type UpdateView = (board: Field[][]) => void;
 
-function gameOver(): void {
-  // eslint-disable-next-line no-alert
-  alert('Game over');
-}
-
 class GameManager {
     private board: Board = new Board(0, 0);
     private minesAmount = 0;
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     private updateViewCallback: UpdateView = () => {};
+    private hasMines = false;
+    private lastGameType: GameEssentials | null = null;
+    private freezeGame = false;
 
     startGame(gameType: GameEssentials): void {
       if (!this.updateViewCallback) {
         throw new Error('GameManager: define updateViewCallback before game start!');
       }
 
+      this.lastGameType = gameType;
       this.minesAmount = gameType.minesAmount;
       this.board = new Board(gameType.sizeX, gameType.sizeY);
-      this.randomizeMines();
       this.updateView();
     }
 
     setUpdateViewCallback(updateViewCallback: UpdateView): void {
       this.updateViewCallback = updateViewCallback;
+    }
+
+    private resetGame() {
+      this.hasMines = false;
+      this.freezeGame = false;
+    }
+
+    private gameOver(): void {
+      this.freezeGame = true;
+
+      // eslint-disable-next-line no-alert
+      // eslint-disable-next-line no-restricted-globals
+      const answer = confirm('Game over, wanna play again?');
+      if (answer) {
+        this.resetGame();
+
+        if (this.lastGameType) {
+          this.startGame(this.lastGameType);
+        }
+      }
     }
 
     private revealFields(field: Field): void {
@@ -52,10 +70,22 @@ class GameManager {
     }
 
     handleFieldClick(x: number, y:number): void {
+      if (this.freezeGame) {
+        return undefined;
+      }
+
+      if (!this.hasMines) {
+        this.randomizeMines({ x, y });
+        this.hasMines = true;
+      }
+
       const field = this.board.getField(x, y);
 
       if (field.isMine()) {
-        return gameOver();
+        field.uncoverField();
+        this.updateView();
+
+        return this.gameOver();
       }
 
       this.revealFields(field);
@@ -103,7 +133,7 @@ class GameManager {
       return undefined;
     }
 
-    private randomizeMines() {
+    private randomizeMines(excludedOrigins: { x: number, y: number}) {
       let counter = 0;
       const { x, y } = this.board.getSizes();
 
@@ -115,7 +145,7 @@ class GameManager {
 
         const field = this.board.getField(origins.x, origins.y);
 
-        if (!field.isMine()) {
+        if (!field.isMine() && origins.x !== excludedOrigins.x && origins.y !== excludedOrigins.y) {
           field.convertToMine();
           this.incrementAdjacentMinesNumberInNeighbours(field);
           counter += 1;

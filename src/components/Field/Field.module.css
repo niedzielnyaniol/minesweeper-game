@@ -2,12 +2,15 @@
     width: 20px;
     height: 20px;
     border: 1px solid red;
+    background: #c0c0c0;
 }
 
 .mine {
-    background-color: black;
+    background: url('/mine.png');
+    background-color: white;
+    background-size: 100%;
 }
 
 .uncovered {
-    background-color: yellow;
+    background-color: white;
 }

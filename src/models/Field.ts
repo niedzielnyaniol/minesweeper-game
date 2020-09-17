@@ -3,11 +3,11 @@ import FieldTypes from '../types/FieldTypes';
 
 class Field {
   constructor(
-        private x: number,
-        private y: number,
-        private borderingMines: number = 0,
-        private state: FieldStates = FieldStates.HIDDEN,
-        private type: FieldTypes = FieldTypes.NORMAL,
+      private x: number,
+      private y: number,
+      private borderingMines: number = 0,
+      private state: FieldStates = FieldStates.HIDDEN,
+      private type: FieldTypes = FieldTypes.NORMAL,
   ) {}
 
   setOrigin(x: number, y:number): void {

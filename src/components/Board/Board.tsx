@@ -12,10 +12,25 @@ const Board = ({
           // eslint-disable-next-line react/no-array-index-key
           <div key={`row-${index}`} style={{ display: 'flex' }}>
             {
-                row.map((field, fieldIndex) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Field key={`field-${fieldIndex}-${field.getState()}`} field={field} onClick={onFieldClick} />
-                ))
+                row.map((field, fieldIndex) => {
+                  const { x, y } = field.getOrigins();
+                  const isUncovered = field.isUncovered();
+                  const isMine = field.isMine();
+                  const borderingMinesAmount = field.getBorderingMines();
+
+                  return (
+                    <Field
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`field-${fieldIndex}-${field.getState()}`}
+                      onClick={onFieldClick}
+                      isUncovered={isUncovered}
+                      isMine={isMine}
+                      borderingMinesAmount={borderingMinesAmount}
+                      x={x}
+                      y={y}
+                    />
+                  );
+                })
             }
           </div>
         ))

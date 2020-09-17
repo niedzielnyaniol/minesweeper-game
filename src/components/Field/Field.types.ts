@@ -1,7 +1,9 @@
-import Field from '../../models/Field';
-
 type Props = {
-    field: Field
+    borderingMinesAmount: number,
+    isMine: boolean
+    isUncovered: boolean
+    x:number
+    y:number
     onClick: (x: number, y: number) => void
 }
 
