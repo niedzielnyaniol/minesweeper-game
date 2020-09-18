@@ -12,13 +12,19 @@
     font-size: 16px;
 }
 
-.field:focus {
+/* .field:focus {
     outline: none;
     border: 1px solid #8c8c8c;
-}
+} */
 
 .mine {
     background: url('/mine.png');
+    background-color: #c0c0c0;
+    background-size: 100%;
+}
+
+.flag {
+    background: url('/flag.png');
     background-color: #c0c0c0;
     background-size: 100%;
 }

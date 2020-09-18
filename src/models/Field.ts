@@ -8,6 +8,7 @@ class Field {
       private y: number,
       private borderingMines: number = 0,
       private state: FieldStates = FieldStates.HIDDEN,
+      private hasFlag: boolean = false,
       private type: FieldTypes = FieldTypes.NORMAL,
   ) {}
 
@@ -31,12 +32,16 @@ class Field {
     return this.state;
   }
 
-  flagField(): void {
-    this.state = FieldStates.FLAGGED;
+  toggleFlag(): void {
+    this.hasFlag = !this.hasFlag;
   }
 
   convertToMine(): void {
     this.type = FieldTypes.MINE;
+  }
+
+  isFlag(): boolean {
+    return this.hasFlag;
   }
 
   isMine(): boolean {

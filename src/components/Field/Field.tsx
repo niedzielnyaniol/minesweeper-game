@@ -4,15 +4,23 @@ import classes from './Field.module.css';
 import classNames from '../../utils/classNames';
 
 const Field = ({
-  borderingMinesAmount,
-  isMine,
-  isUncovered,
   x,
   y,
+  isMine,
+  hasFlag,
+  isUncovered,
+  borderingMinesAmount,
   onClick,
+  onRightClick,
 }: Props): JSX.Element => {
   const handleClick = (): void => {
     onClick(x, y);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleContextMenu = (e: any) => {
+    e.preventDefault();
+    onRightClick(x, y);
   };
 
   return (
@@ -20,11 +28,13 @@ const Field = ({
     <button
       type="button"
       onClick={handleClick}
+      onContextMenu={handleContextMenu}
       className={
         classNames([
           classes.field,
           isUncovered && classes.uncovered,
           isUncovered && isMine && classes.mine,
+          !isUncovered && hasFlag && classes.flag,
           borderingMinesAmount > 0 && classes[`number${borderingMinesAmount}`],
         ])
       }

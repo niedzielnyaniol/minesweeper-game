@@ -48,7 +48,7 @@ class GameManager {
             if (this.isValidOrigins(i, j)) {
               const neighbour = this.board.getField(i, j);
 
-              if (!neighbour.isMine() && !neighbour.isUncovered()) {
+              if (!neighbour.isMine() && !neighbour.isUncovered() && !neighbour.isFlag()) {
                 this.revealFields(neighbour);
               }
             }
@@ -100,7 +100,10 @@ class GameManager {
       const { x, y } = this.board.getSizes();
 
       while (counter < this.minesAmount) {
-        const origins = new Origin(Randomizer.getRandomNumber(x), Randomizer.getRandomNumber(y));
+        const origins = new Origin(
+          Randomizer.getRandomNumber({ to: x }),
+          Randomizer.getRandomNumber({ to: y }),
+        );
         const field = this.board.getField(origins.x, origins.y);
 
         if (!field.isMine() && !origins.isEqual(excludedOrigins)) {
@@ -135,6 +138,16 @@ class GameManager {
       this.updateView();
 
       return undefined;
+    }
+
+    handleFieldRightClick(x: number, y: number): void {
+      const field = this.board.getField(x, y);
+
+      if (!field.isUncovered()) {
+        console.log('toggle');
+        field.toggleFlag();
+        this.updateView();
+      }
     }
 
     startGame(gameType: GameEssentials): void {

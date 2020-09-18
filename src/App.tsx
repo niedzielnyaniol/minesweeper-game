@@ -12,18 +12,26 @@ function App(): JSX.Element {
 
   useEffect(() => {
     gameManager.setUpdateViewCallback(setFields);
-    gameManager.startGame(GameTypes.EASY);
+    gameManager.startGame(GameTypes.MEDIUM);
   }, []);
 
   const handleFieldClick = (x: number, y: number) => {
     gameManager.handleFieldClick(x, y);
   };
 
+  const handleFieldRightClick = (x: number, y: number) => {
+    gameManager.handleFieldRightClick(x, y);
+  };
+
   return (
     <div className={classes.center}>
       {
         fields ? (
-          <BoardComponent fields={fields} onFieldClick={handleFieldClick} />
+          <BoardComponent
+            fields={fields}
+            onFieldClick={handleFieldClick}
+            onFieldRightClick={handleFieldRightClick}
+          />
         ) : 'start new game...'
       }
     </div>

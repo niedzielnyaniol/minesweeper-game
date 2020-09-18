@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## How to run
 
 ```sh
-git clone git@github.com:niedzielnyaniol/minesweeper-game.git
+git clone git@github.com:niedzielnyaniol/react-minesweeper-game.git
 
 cd minesweeper-game/
 
