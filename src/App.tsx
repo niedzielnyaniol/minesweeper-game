@@ -9,10 +9,19 @@ const gameManager = new GameManager();
 
 function App(): JSX.Element {
   const [fields, setFields] = useState<Field[][]>();
+  const [time, setTime] = useState<number>(0);
 
   useEffect(() => {
     gameManager.setUpdateViewCallback(setFields);
     gameManager.startGame(GameTypes.MEDIUM);
+
+    const interval = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const handleFieldClick = (x: number, y: number) => {
@@ -28,9 +37,11 @@ function App(): JSX.Element {
       {
         fields ? (
           <BoardComponent
+            minesLeft={gameManager.getMinesLeft()}
             fields={fields}
             onFieldClick={handleFieldClick}
             onFieldRightClick={handleFieldRightClick}
+            time={time}
           />
         ) : 'start new game...'
       }

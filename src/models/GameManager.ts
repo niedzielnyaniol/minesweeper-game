@@ -9,7 +9,6 @@ type UpdateView = (board: Field[][]) => void;
 class GameManager {
     private board: Board = new Board(0, 0);
     private minesAmount = 0;
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     private updateViewCallback: UpdateView = () => {};
     private hasMines = false;
     private lastGameType: GameEssentials | null = null;
@@ -144,7 +143,6 @@ class GameManager {
       const field = this.board.getField(x, y);
 
       if (!field.isUncovered()) {
-        console.log('toggle');
         field.toggleFlag();
         this.updateView();
       }
@@ -163,6 +161,10 @@ class GameManager {
 
     setUpdateViewCallback(updateViewCallback: UpdateView): void {
       this.updateViewCallback = updateViewCallback;
+    }
+
+    getMinesLeft(): number {
+      return this.minesAmount - this.board.getFlagsCount();
     }
 }
 

@@ -14,7 +14,9 @@ const Field = ({
   onRightClick,
 }: Props): JSX.Element => {
   const handleClick = (): void => {
-    onClick(x, y);
+    if (!hasFlag) {
+      onClick(x, y);
+    }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

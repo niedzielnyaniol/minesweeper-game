@@ -1,0 +1,13 @@
+.wrapper { 
+    display: inline-flex;
+    background: #000;
+    padding: 1px;
+    border-top: 1px solid #7a7a7a;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    border-left: 1px solid #7a7a7a;
+}
+
+.number-wrapper {
+    padding: 1px;
+}

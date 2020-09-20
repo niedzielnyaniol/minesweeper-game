@@ -27,6 +27,21 @@ class Board {
     getSizes(): Origin {
       return new Origin(this.fields.length, this.fields[0].length);
     }
+
+    getFlagsCount(): number {
+      let count = 0;
+      const { x, y } = this.getSizes();
+
+      for (let i = 0; i < y; i += 1) {
+        for (let j = 0; j < x; j += 1) {
+          if (this.fields[i][j].isFlag()) {
+            count += 1;
+          }
+        }
+      }
+
+      return count;
+    }
 }
 
 export default Board;

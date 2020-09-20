@@ -26,6 +26,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'react/jsx-props-no-spreading': 0,
     'react/prop-types': 0,
+    '@typescript-eslint/no-empty-function': 0,
     'import/extensions': [
       'error',
       'ignorePackages',

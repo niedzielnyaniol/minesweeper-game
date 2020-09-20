@@ -2,13 +2,17 @@ import React from 'react';
 import classes from './Board.module.css';
 import Field from '../Field';
 import Props from './Board.types';
+import Stats from './components/Stats';
 
 const Board = ({
   fields,
   onFieldClick,
   onFieldRightClick,
+  minesLeft,
+  time,
 }: Props): JSX.Element => (
   <div className={classes.thirdFrame}>
+    <Stats minesLeft={minesLeft} time={time} />
     <div className={classes.secondFrame}>
       <div className={classes.firstFrame}>
         {

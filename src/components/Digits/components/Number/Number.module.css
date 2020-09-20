@@ -1,0 +1,51 @@
+.top, .bottom, .center, .left, .right {
+    background: #600000;
+}
+
+.top, .bottom, .center {
+    width: 16px;
+    height: 3px;
+}
+
+.left, .right {
+    height: 11px;
+    width: 3px;;
+}
+
+.left::after, .right::after, .left::before, .right::before {
+    content: '';
+    display: block;
+    background: black;
+    width: 4px;
+    height: 2px;
+    position: relative;
+}
+
+.left::before, .right::before {
+    top: -2px;
+}
+
+.left::after, .right::after {
+    top: 9px;
+}
+
+.left::before, .right::after {
+    transform: rotate(45deg);
+}
+
+.right::before, .left::after {
+    transform: rotate(-45deg);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper {
+    height: 32px;
+}
+
+.active {
+    background: #ff0000;
+}
